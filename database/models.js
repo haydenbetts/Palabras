@@ -14,6 +14,7 @@ const Word = sequelize.define('word', {
 });
 
 Word.belongsTo(User);
+User.hasMany(Word);
 
 User.sync().then(() => {
     console.log('synced user!')
@@ -26,3 +27,6 @@ Word.sync().then(() => {
 }).catch(() => {
     console.log('failed to sync word!')
 });
+
+module.exports.Word = Word;
+module.exports.User = User;
