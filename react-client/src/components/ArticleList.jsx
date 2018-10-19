@@ -9,7 +9,7 @@ const ArticleList = (props) => {
                 {props.articles.map((article, id) => {
                     return (
                     <li key={id}>
-                        <ArticleListEntry article={article}/>
+                        <ArticleListEntry article={article} addWordToList={props.addWordToList}/>
                     </li>
                     )
                 })

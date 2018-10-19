@@ -3,7 +3,7 @@ const React = require('react');
 const ArticleListEntry = (props) => {
     // 
     return (
-        <div>
+        <div onClick={() => props.addWordToList()}>
             <div className="row">
                     <h3> {props.article.title} </h3>
             </div>
