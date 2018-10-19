@@ -9,9 +9,9 @@ const WordList = (props) => {
             <ul>
                 {props.words.map((word, i) => {
                     if (word.userId) {
-                        return  <PersistedWordListEntry word={word} key={i} />
+                        return  <PersistedWordListEntry word={word} key={i} index={i} />
                     } else {
-                        return <UnpersistedWordListEntry word={word} key={i}/>
+                        return <UnpersistedWordListEntry word={word} key={i} index={i} deleteUnpersisted={props.deleteUnpersisted}/>
                     }
                 })}
             </ul>

@@ -21,6 +21,7 @@ class App extends React.Component {
         }
         this.fetchUserInfo = this.fetchUserInfo.bind(this);
         this.addWordToList = this.addWordToList.bind(this);
+        this.deleteUnpersistedWordFromList = this.deleteUnpersistedWordFromList.bind(this);
     }
 
     componentDidMount() {
@@ -80,11 +81,16 @@ class App extends React.Component {
     }
 
     addWordToList() {
-        // find which word is highlighted
         if (window.getSelection().toString().length > 0) {
             var newWord = window.getSelection().toString();
             this.setState({words: this.state.words.concat([{text: newWord}])});
         }       
+    }
+
+    deleteUnpersistedWordFromList(index) {
+       var newWords = [...this.state.words];
+       newWords.splice(index, 1);
+       this.setState({words: newWords});
     }
 
     render() {
@@ -97,8 +103,18 @@ class App extends React.Component {
                         <UserGreeting className="box a" user={this.state.currentUser} />
                     </div>
                     <div className="row">
-                        <div className="col-md-10"> <ArticleList articles={this.state.articles} addWordToList={this.addWordToList} /> </div>
-                        <div className="col-md-2"> <WordList words={this.state.words} /> </div>
+                        <div className="col-md-10"> 
+                            <ArticleList 
+                                articles={this.state.articles} 
+                                addWordToList={this.addWordToList} 
+                            /> 
+                        </div>
+                        <div className="col-md-2"> 
+                            <WordList 
+                                words={this.state.words}
+                                deleteUnpersisted={this.deleteUnpersistedWordFromList}
+                            /> 
+                        </div>
                     </div>
                 </div>)
         }
