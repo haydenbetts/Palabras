@@ -3,7 +3,7 @@ const ReactDOM = require('react-dom');
 const GuestGreeting = require('./components/GuestGreeting.jsx');
 const UserGreeting = require('./components/UserGreeting.jsx');
 const WordList = require('./components/WordList.jsx');
-const Article = require('./components/Article.jsx');
+const ArticleList = require('./components/ArticleList.jsx');
 
 
 const axios = require('axios');
@@ -15,6 +15,7 @@ class App extends React.Component {
             usernameforTesting: "haydenbetts",
             currentUser: false,
             words: [],
+            articles: ['','',''],
             failedToFindUser: false,
             article: false
         }
@@ -79,7 +80,7 @@ class App extends React.Component {
                         <UserGreeting className="box a" user={this.state.currentUser} />
                     </div>
                     <div className="row">
-                        <div className="col-md-6"> <Article /> </div>
+                        <div className="col-md-6"> <ArticleList articles={this.state.articles} /> </div>
                         <div className="col-md-4"> <WordList words={this.state.words} /> </div>
                     </div>
                 </div>)
