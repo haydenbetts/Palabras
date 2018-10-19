@@ -13,7 +13,7 @@ module.exports = {
         })
     },
     post: (req, res) => {
-
+        
         var username = req.body.username;
         // find or create by username
         User.sync().then(() => {
