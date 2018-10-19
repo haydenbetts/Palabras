@@ -1,4 +1,4 @@
-# Project Name #
+# Palabras #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +17,25 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Learn Spanish Vocab while you read the news.
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Foreign language learners looking for a convenient method to learn new vocabulary every day.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > A web-app that allows you to read Spanish language news, and save vocabulary that you do not understand for future study.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > It is tedious to spend lots of time learing Spanish vocabulary on Duolingo or from a textbook. News articles are interesting, and a good source of easy -> mid-level vocabulary. However, it can be tedious to copy and paste all the words you do not know to a flashcard app.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Palabras serves up random Spanish news articles, allows you to save words you do not know by just clicking them.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "¡Ándale!"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Visit localhost:3000, and click "Fetch new article".
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > "Palabras makes it easy to stay up to date with the news and learn vocabulary while doing so."
