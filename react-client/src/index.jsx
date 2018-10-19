@@ -3,6 +3,7 @@ const ReactDOM = require('react-dom');
 const GuestGreeting = require('./components/GuestGreeting.jsx');
 const UserGreeting = require('./components/UserGreeting.jsx');
 const WordList = require('./components/WordList.jsx');
+const Article = require('./components/Article.jsx');
 
 
 const axios = require('axios');
@@ -13,7 +14,8 @@ class App extends React.Component {
         this.state = {
             currentUser: false,
             words: [],
-            failedToFindUser: false
+            failedToFindUser: false,
+            article: false
         }
         this.fetchUserInfo = this.fetchUserInfo.bind(this);
 
@@ -65,10 +67,15 @@ class App extends React.Component {
             return <GuestGreeting handleUsernameSubmit={this.fetchUserInfo} />
         } else {
             return (
-            <div>
-                <UserGreeting user={this.state.currentUser} />
-                <WordList words={this.state.words} />
-            </div>)
+                <div>
+                    <div className="row">
+                        <UserGreeting className="box a" user={this.state.currentUser} />
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6"> <Article /> </div>
+                        <div className="col-md-4"> <WordList words={this.state.words} /> </div>
+                    </div>
+                </div>)
         }
     }
 }
