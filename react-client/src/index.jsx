@@ -89,8 +89,8 @@ class App extends React.Component {
                         <UserGreeting className="box a" user={this.state.currentUser} />
                     </div>
                     <div className="row">
-                        <div className="col-md-6"> <ArticleList articles={this.state.articles} /> </div>
-                        <div className="col-md-4"> <WordList words={this.state.words} /> </div>
+                        <div className="col-md-10"> <ArticleList articles={this.state.articles} /> </div>
+                        <div className="col-md-2"> <WordList words={this.state.words} /> </div>
                     </div>
                 </div>)
         }
