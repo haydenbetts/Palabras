@@ -4,7 +4,8 @@ const ArticleListEntry = (props) => {
     // 
     return (
         <div>
-            here is a teset article
+            <h3> {props.article.title} </h3>
+            <p> {props.article.description} </p>
         </div>
     )
 };

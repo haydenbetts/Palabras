@@ -15,7 +15,7 @@ class App extends React.Component {
             usernameforTesting: "haydenbetts",
             currentUser: false,
             words: [],
-            articles: ['','',''],
+            articles: [],
             failedToFindUser: false,
             article: false
         }
@@ -26,6 +26,7 @@ class App extends React.Component {
     componentDidMount() {
         if (this.state.usernameforTesting) {
             this.fetchUserInfo(this.state.usernameforTesting);
+            this.fetchArticles();
         }
     }
 
@@ -66,8 +67,16 @@ class App extends React.Component {
             });
     }
 
-    fetchArticle() {
-        
+    fetchArticles() {
+        axios.get('/api/articles')
+        .then((response) => {
+            this.setState({ articles: response.data }, () => {
+                console.log(this.state.articles)
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     render() {
