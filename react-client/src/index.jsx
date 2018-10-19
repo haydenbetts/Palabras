@@ -12,6 +12,7 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            usernameforTesting: "haydenbetts",
             currentUser: false,
             words: [],
             failedToFindUser: false,
@@ -22,7 +23,9 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-
+        if (this.state.usernameforTesting) {
+            this.fetchUserInfo(this.state.usernameforTesting);
+        }
     }
 
     fetchUserInfo(username) {
