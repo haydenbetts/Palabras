@@ -8,7 +8,7 @@ router
     .get('/articles', articleController.get)
 
 router
-    .get('/users', userController.post)
+    .get('/users', userController.get)
     .post('/users', userController.post)
     .delete('/users', userController.delete)
 
