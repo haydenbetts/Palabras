@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./routes');
+require('dotenv').config()
+
 const app = express();
 
 app.use(morgan('dev'));

@@ -65,6 +65,10 @@ class App extends React.Component {
             });
     }
 
+    fetchArticle() {
+        
+    }
+
     render() {
         if (!this.state.currentUser) {
             return <GuestGreeting handleUsernameSubmit={this.fetchUserInfo} />
