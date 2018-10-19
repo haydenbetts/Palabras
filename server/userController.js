@@ -3,9 +3,13 @@ const { Word, User } = require('../database/models.js')
 
 module.exports = {
     get: (req, res) => {
-        User.findAll({}).then((users) => {
-            console.log(users)
-            res.status(200).json(users);
+        User.findAll({
+            where: {
+                username: req.query.username
+            }
+        }).then((user) => {
+            console.log(user)
+            res.status(200).json(user);
         })
     },
     post: (req, res) => {
