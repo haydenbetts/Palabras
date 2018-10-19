@@ -8,7 +8,8 @@ const axios = require('axios');
     constructor(props) {
         super(props)
         this.state = {
-            currentUser: false
+            currentUser: false,
+            failedToFindUser: false
         }
         this.fetchUserInfo = this.fetchUserInfo.bind(this);
         
@@ -19,19 +20,21 @@ const axios = require('axios');
     }
 
     fetchUserInfo(username) {
-        // send axios request to /api/users where username = username
-        axios.get('/users', {
+        axios.get('/api/users', {
             params: {
               username: username
             }
           })
-          .then(function (response) {
-            console.log(response)
+          .then((response) => {
+            if (response.data.length < 1) {
+                this.setState({failedToFindUser: true})
+            } else {
+                this.setState({currentUser: response.data[0]})
+            }
           })
           .catch(function (error) {
             console.log(error);
           });
-        // set current user equal to the response object
     }
 
     fetchUserWords(userId) {

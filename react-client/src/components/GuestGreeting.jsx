@@ -30,7 +30,7 @@ class GuestGreeting extends React.Component {
             <h3> No worries if you haven't created a username. You can enter a new one now!</h3>
             <label htmlFor="username"> Enter your username! </label>
             <input id="username" type="text" value={this.state.username} onChange={(e) => {this.updateUsername(e)}}/>
-            <button type="button" onClick={() => { }} >Submit</button>
+            <button type="button" onClick={() => {this.props.handleUsernameSubmit(this.state.username)}}> Submit</button>
         </div>)
     }
 }
