@@ -17,7 +17,7 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Learn Spanish Vocab while you read the news.
+  > Learn Spanish vocab while you read the news.
 
 ## Sub-Heading ##
   > Foreign language learners looking for a convenient method to learn new vocabulary every day.
