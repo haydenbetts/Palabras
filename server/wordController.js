@@ -21,7 +21,7 @@ module.exports = {
         words.forEach(function (word, i) {
             Word.sync().then(Word.findOrCreate({
                 where: {
-                    text: word,
+                    text: word.text,
                     userId: userId
                 }
             }).then((result) => {

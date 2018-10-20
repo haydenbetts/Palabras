@@ -13,7 +13,7 @@ class App extends React.Component {
         super(props)
         this.state = {
             usernameforTesting: "haydenbetts",
-            currentUser: false,
+            currentUser: {id: 6},
             words: [],
             articles: [],
             failedToFindUser: false,
@@ -22,6 +22,7 @@ class App extends React.Component {
         this.fetchUserInfo = this.fetchUserInfo.bind(this);
         this.addWordToList = this.addWordToList.bind(this);
         this.deleteUnpersistedWordFromList = this.deleteUnpersistedWordFromList.bind(this);
+        this.persistWords = this.persistWords.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +30,7 @@ class App extends React.Component {
             this.fetchUserInfo(this.state.usernameforTesting);
             this.fetchArticles();
         }
+        console.log(this.state.currentUser)
     }
 
     fetchUserInfo(username) {
@@ -80,10 +82,23 @@ class App extends React.Component {
         });
     }
 
+    persistWords() {
+        axios.post('/api/words', {
+            id: this.state.currentUser.id,
+            words: this.state.words
+          })
+        .then((response) => {
+            this.fetchUserWords(this.state.currentUser.id);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
     addWordToList() {
         if (window.getSelection().toString().length > 0) {
             var newWord = window.getSelection().toString();
-            this.setState({words: this.state.words.concat([{text: newWord}])});
+            this.setState({words: this.state.words.concat([{text: newWord, id: this.state.currentUser.id}])});
         }       
     }
 
@@ -113,6 +128,7 @@ class App extends React.Component {
                             <WordList 
                                 words={this.state.words}
                                 deleteUnpersisted={this.deleteUnpersistedWordFromList}
+                                persistWords={this.persistWords}
                             /> 
                         </div>
                     </div>

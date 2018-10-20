@@ -6,6 +6,7 @@ const WordList = (props) => {
     return (
         <div>
             <h3> Here are you words! </h3>
+            <button onClick={() => props.persistWords()}> Save Words </button>
             <ul>
                 {props.words.map((word, i) => {
                     if (word.userId) {
