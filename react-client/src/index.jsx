@@ -119,7 +119,15 @@ class App extends React.Component {
 
         return (
             <div>
-                <div className="row">
+                <div className="row nav">
+                <div className="col-md-5 header-column">
+                    <div className="row header">
+                        <div className="header-text"> Palabras </div>
+                    </div>
+                    <div className="row">
+                        <div className="intro-text"> Read the news, learn new vocabulary </div>
+                    </div>
+                </div>
                     <Greeting currentUser={this.state.currentUser}
                         handleUsernameSubmit={this.fetchUserInfo} />
                 </div>

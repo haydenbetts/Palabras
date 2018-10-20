@@ -22,17 +22,18 @@ class GuestGreeting extends React.Component {
         this.setState({
             username: e.target.value
         }, () => {
-        
+
         })
     }
 
     render() {
-        return (<div className="guest-greeting">
-            <p classnName="guest-greeting-message"> To use save vocabulary using <i>Palabras</i>, you must enter a username
-             No worries if you haven't created a username. You can enter a new one now!</p>
-            <label htmlFor="username"> Enter your username! </label>
-            <input id="username" type="text" value={this.state.username} onChange={(e) => {this.updateUsername(e)}}/>
-            <button type="button" onClick={() => {this.props.handleUsernameSubmit(this.state.username)}}> Submit</button>
+        return (<div className="col-md-7 guest-greeting">
+            <div className="guest-greeting-message"> To save vocabulary enter your username, or create a new one!.
+             </div>
+            <div>
+                <input id="username" type="text" placeholder="Enter your username" value={this.state.username} onChange={(e) => { this.updateUsername(e) }} />
+                <button type="button" onClick={() => { this.props.handleUsernameSubmit(this.state.username) }}> Submit</button>
+            </div>
         </div>)
     }
 }
