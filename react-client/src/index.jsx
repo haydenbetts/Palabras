@@ -35,8 +35,9 @@ class App extends React.Component {
         // }
     }
 
-    updateCurrentUser() {
-        
+    persistNewUser(username) {
+        axios.post('/api/users', { username: username })
+        .then(() => this.fetchUserInfo(username))
     }
 
     fetchUserInfo(username) {
@@ -47,7 +48,7 @@ class App extends React.Component {
         })
             .then((response) => {
                 if (response.data.length < 1) {
-                    this.setState({ failedToFindUser: true })
+                    this.persistNewUser(username);
                 } else {
                     this.setState({ currentUser: response.data[0] }, () => {
                         this.fetchUserWords(this.state.currentUser.id)
@@ -78,68 +79,68 @@ class App extends React.Component {
 
     fetchArticles() {
         axios.get('/api/articles')
-        .then((response) => {
-            this.setState({ articles: response.data }, () => {
-                console.log(this.state.articles)
+            .then((response) => {
+                this.setState({ articles: response.data }, () => {
+                    console.log(this.state.articles)
+                })
             })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     persistWords() {
         axios.post('/api/words', {
             id: this.state.currentUser.id,
             words: this.state.words
-          })
-        .then((response) => {
-            this.fetchUserWords(this.state.currentUser.id);
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then((response) => {
+                this.fetchUserWords(this.state.currentUser.id);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     addWordToList() {
         if (window.getSelection().toString().length > 0) {
             var newWord = window.getSelection().toString();
-            this.setState({words: this.state.words.concat([{text: newWord, id: this.state.currentUser.id}])});
-        }       
+            this.setState({ words: this.state.words.concat([{ text: newWord, id: this.state.currentUser.id }]) });
+        }
     }
 
     deleteUnpersistedWordFromList(index) {
-       var newWords = [...this.state.words];
-       newWords.splice(index, 1);
-       this.setState({words: newWords});
+        var newWords = [...this.state.words];
+        newWords.splice(index, 1);
+        this.setState({ words: newWords });
     }
 
     render() {
 
-            return (
-                <div>
-                    <div className="row">
-                        <Greeting currentUser={this.state.currentUser} 
-                        handleUsernameSubmit={this.fetchUserInfo}/>
+        return (
+            <div>
+                <div className="row">
+                    <Greeting currentUser={this.state.currentUser}
+                        handleUsernameSubmit={this.fetchUserInfo} />
+                </div>
+                <div className="row">
+                    <div className="col-md-10">
+                        <ArticleList
+                            articles={this.state.articles}
+                            addWordToList={this.addWordToList}
+                        />
                     </div>
-                    <div className="row">
-                        <div className="col-md-10"> 
-                            <ArticleList 
-                                articles={this.state.articles} 
-                                addWordToList={this.addWordToList} 
-                            /> 
-                        </div>
-                        <div className="col-md-2"> 
-                            <WordList 
-                                words={this.state.words}
-                                deleteUnpersisted={this.deleteUnpersistedWordFromList}
-                                persistWords={this.persistWords}
-                            /> 
-                        </div>
+                    <div className="col-md-2">
+                        <WordList
+                            words={this.state.words}
+                            deleteUnpersisted={this.deleteUnpersistedWordFromList}
+                            persistWords={this.persistWords}
+                        />
                     </div>
-                </div>)
-        }
+                </div>
+            </div>)
     }
+}
 
 
 ReactDOM.render(<App />, document.getElementById('app'))
