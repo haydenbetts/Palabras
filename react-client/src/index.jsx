@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const Greeting = require('./components/Greeting.jsx');
 const GuestGreeting = require('./components/GuestGreeting.jsx');
 const UserGreeting = require('./components/UserGreeting.jsx');
 const WordList = require('./components/WordList.jsx');
@@ -13,7 +14,7 @@ class App extends React.Component {
         super(props)
         this.state = {
             usernameforTesting: "haydenbetts",
-            currentUser: {id: 6},
+            currentUser: false,
             words: [],
             articles: [],
             failedToFindUser: false,
@@ -26,11 +27,16 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        if (this.state.usernameforTesting) {
-            this.fetchUserInfo(this.state.usernameforTesting);
-            this.fetchArticles();
-        }
-        console.log(this.state.currentUser)
+        this.fetchArticles();
+        // Uncommenting this will allow you to test with sample user!
+        // if (this.state.usernameforTesting) {
+        //     this.fetchUserInfo(this.state.usernameforTesting);
+        //     this.fetchArticles();
+        // }
+    }
+
+    updateCurrentUser() {
+        
     }
 
     fetchUserInfo(username) {
@@ -109,13 +115,12 @@ class App extends React.Component {
     }
 
     render() {
-        if (!this.state.currentUser) {
-            return <GuestGreeting handleUsernameSubmit={this.fetchUserInfo} />
-        } else {
+
             return (
                 <div>
                     <div className="row">
-                        <UserGreeting className="box a" user={this.state.currentUser} />
+                        <Greeting currentUser={this.state.currentUser} 
+                        handleUsernameSubmit={this.fetchUserInfo}/>
                     </div>
                     <div className="row">
                         <div className="col-md-10"> 
@@ -135,6 +140,6 @@ class App extends React.Component {
                 </div>)
         }
     }
-}
+
 
 ReactDOM.render(<App />, document.getElementById('app'))

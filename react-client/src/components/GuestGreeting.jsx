@@ -21,6 +21,8 @@ class GuestGreeting extends React.Component {
     updateUsername(e) {
         this.setState({
             username: e.target.value
+        }, () => {
+        
         })
     }
 
