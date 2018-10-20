@@ -39,7 +39,7 @@ class App extends React.Component {
 
     persistNewUser(username) {
         axios.post('/api/users', { username: username })
-        .then(() => this.fetchUserInfo(username))
+            .then(() => this.fetchUserInfo(username))
     }
 
     fetchUserInfo(username) {
@@ -119,21 +119,25 @@ class App extends React.Component {
 
     translateWords() {
         if (this.state.words.length > 0) {
-        axios.post('/api/translate', {
-            words: this.state.words
+            axios.post('/api/translate', {
+                words: this.state.words
             })
-            .then((translated) => {
-                var translated = translated.data.split(',');
-                this.state.words.forEach((word, i) => {
-                    var newArr = this.state.word_translation_tuples;
-                    newArr.push([word.text, translated[i]]);
+                .then((translated) => {
+                    this.setState({ word_translation_tuples: [] })
 
-                    this.setState({word_translation_tuples: newArr});
+
+                    var translated = translated.data.split(',');
+                    this.state.words.forEach((word, i) => {
+                        var newArr = this.state.word_translation_tuples;
+                        newArr.push([word.text, translated[i]]);
+
+                        this.setState({ word_translation_tuples: newArr });
+
+                    })
                 })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     }
 
@@ -142,14 +146,14 @@ class App extends React.Component {
         return (
             <div>
                 <div className="row nav">
-                <div className="col-md-3 header-column">
-                    <div className="row header">
-                        <div className="header-text"> Palabras </div>
+                    <div className="col-md-3 header-column">
+                        <div className="row header">
+                            <div className="header-text"> Palabras </div>
+                        </div>
+                        <div className="row">
+                            <div className="intro-text"> Read the news, learn new vocabulary </div>
+                        </div>
                     </div>
-                    <div className="row">
-                        <div className="intro-text"> Read the news, learn new vocabulary </div>
-                    </div>
-                </div>
                     <Greeting currentUser={this.state.currentUser}
                         handleUsernameSubmit={this.fetchUserInfo} />
                 </div>

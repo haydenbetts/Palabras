@@ -78,3 +78,8 @@ button.delete-word {
     background-color: white;
     /* border: 1px solid black; */
 }
+
+.translations {
+    border-top: 1px solid black;
+    margin-top: 20px;
+}
