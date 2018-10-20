@@ -6,7 +6,7 @@ const WordList = (props) => {
     return (
         <div>
             <div className="word-list-header"> 
-                <p className="word-list-header-text"> My Wordlist </p>
+                <p className="word-list-header-text"> My Vocab </p>
              </div>
             <ul className="word-list">
                 {props.words.map((word, i) => {

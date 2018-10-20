@@ -27,7 +27,7 @@ class GuestGreeting extends React.Component {
     }
 
     render() {
-        return (<div className="col-md-7 guest-greeting">
+        return (<div className="col-md-4 guest-greeting">
             <div className="guest-greeting-message"> To save vocabulary enter your username, or create a new one!.
              </div>
             <div>

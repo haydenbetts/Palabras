@@ -11,7 +11,8 @@
 }
 
 .header-column {
-    padding-left: 10%;
+    background-color: goldenrod;
+    padding-left: 60px;
     padding-bottom: 10px;
 }
 
@@ -22,6 +23,7 @@
 
 .guest-greeting {
     padding-top: 20px;
+    background-color: white;
 }
 
 button {
@@ -31,4 +33,48 @@ button {
 button:hover {
     background-color: black;
     color: white;
+}
+
+ul {
+    list-style: none;
+}
+
+ul.word-list {
+    padding-left: 5px;
+    font-size: .9em;
+}
+
+.word-list-wrapper {
+    margin-top: 5px;
+    padding-left: 25px;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    padding-top: 2;
+}
+
+button.delete-word {
+    font-size: .75em;
+    float: right;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.guest-greeting-message {
+    color: black;
+}
+
+.word-list-header {
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    font-size: 1.4em;
+    padding-right: 0px;
+}
+
+.guest-greeting {
+    border-right: 3px solid goldenrod;
+    border-bottom: 3px solid goldenrod;
+    color: black;
+    background-color: white;
+    /* border: 1px solid black; */
 }
