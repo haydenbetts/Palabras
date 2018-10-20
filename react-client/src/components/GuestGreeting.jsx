@@ -27,9 +27,9 @@ class GuestGreeting extends React.Component {
     }
 
     render() {
-        return (<div>
-            <h2> To use <i>Palabras</i>, you must enter a username</h2>
-            <h3> No worries if you haven't created a username. You can enter a new one now!</h3>
+        return (<div className="guest-greeting">
+            <p classnName="guest-greeting-message"> To use save vocabulary using <i>Palabras</i>, you must enter a username
+             No worries if you haven't created a username. You can enter a new one now!</p>
             <label htmlFor="username"> Enter your username! </label>
             <input id="username" type="text" value={this.state.username} onChange={(e) => {this.updateUsername(e)}}/>
             <button type="button" onClick={() => {this.props.handleUsernameSubmit(this.state.username)}}> Submit</button>

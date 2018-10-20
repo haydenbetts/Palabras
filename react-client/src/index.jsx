@@ -5,7 +5,7 @@ const GuestGreeting = require('./components/GuestGreeting.jsx');
 const UserGreeting = require('./components/UserGreeting.jsx');
 const WordList = require('./components/WordList.jsx');
 const ArticleList = require('./components/ArticleList.jsx');
-
+const NavBar = require('./components/NavBar.jsx');
 
 const axios = require('axios');
 
