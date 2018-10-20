@@ -16,5 +16,9 @@ router
     .get('/words', wordController.get)
     .post('/words', wordController.post)
     .delete('/words', wordController.delete)
+router
+    .post('/translate', (req, res) => {
+        res.get()
+    })
 
 module.exports = router;

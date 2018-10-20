@@ -24,6 +24,7 @@ class App extends React.Component {
         this.addWordToList = this.addWordToList.bind(this);
         this.deleteUnpersistedWordFromList = this.deleteUnpersistedWordFromList.bind(this);
         this.persistWords = this.persistWords.bind(this);
+        this.translateWords = this.translateWords.bind(this);
     }
 
     componentDidMount() {
@@ -115,6 +116,18 @@ class App extends React.Component {
         this.setState({ words: newWords });
     }
 
+    translateWords() {
+        axios.get('/api/translate', {
+            words: this.state.words
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     render() {
 
         return (
@@ -137,6 +150,7 @@ class App extends React.Component {
                             words={this.state.words}
                             deleteUnpersisted={this.deleteUnpersistedWordFromList}
                             persistWords={this.persistWords}
+                            translateWords={this.translateWords}
                         />
                     </div>
                     <div className="col-md-10">
