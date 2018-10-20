@@ -5,9 +5,10 @@ const UnpersistedWordListEntry = require('./UnpersistedWordListEntry.jsx');
 const WordList = (props) => {
     return (
         <div>
-            <h3> Here are your words! </h3>
-            <button onClick={() => props.persistWords()}> Save New Words to Database </button>
-            <ul>
+            <div className="word-list-header"> 
+                <p className="word-list-header-text"> My Wordlist </p>
+             </div>
+            <ul className="word-list">
                 {props.words.map((word, i) => {
                     if (word.userId) {
                         return  <PersistedWordListEntry word={word} key={i} index={i} />
@@ -16,6 +17,7 @@ const WordList = (props) => {
                     }
                 })}
             </ul>
+            <button className="persist-words-button" onClick={() => props.persistWords()}> Save New Words to Database </button>
         </div>)
 };
 

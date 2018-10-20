@@ -5,7 +5,7 @@ const ArticleList = (props) => {
     // 
     return (
         <div>
-            <ul>
+            <ul className="article-list">
                 {props.articles.map((article, id) => {
                     return (
                     <li key={id}>

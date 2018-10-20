@@ -5,7 +5,7 @@ const GuestGreeting = require('./components/GuestGreeting.jsx');
 const UserGreeting = require('./components/UserGreeting.jsx');
 const WordList = require('./components/WordList.jsx');
 const ArticleList = require('./components/ArticleList.jsx');
-
+const NavBar = require('./components/NavBar.jsx');
 
 const axios = require('axios');
 
@@ -119,12 +119,20 @@ class App extends React.Component {
 
         return (
             <div>
-                <div className="row">
+                <div className="row nav">
+                <div className="col-md-5 header-column">
+                    <div className="row header">
+                        <div className="header-text"> Palabras </div>
+                    </div>
+                    <div className="row">
+                        <div className="intro-text"> Read the news, learn new vocabulary </div>
+                    </div>
+                </div>
                     <Greeting currentUser={this.state.currentUser}
                         handleUsernameSubmit={this.fetchUserInfo} />
                 </div>
                 <div className="row">
-                    <div className="col-md-2">
+                    <div className="word-list-wrapper col-md-2">
                         <WordList
                             words={this.state.words}
                             deleteUnpersisted={this.deleteUnpersistedWordFromList}
