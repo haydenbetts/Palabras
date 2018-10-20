@@ -124,17 +124,17 @@ class App extends React.Component {
                         handleUsernameSubmit={this.fetchUserInfo} />
                 </div>
                 <div className="row">
-                    <div className="col-md-10">
-                        <ArticleList
-                            articles={this.state.articles}
-                            addWordToList={this.addWordToList}
-                        />
-                    </div>
                     <div className="col-md-2">
                         <WordList
                             words={this.state.words}
                             deleteUnpersisted={this.deleteUnpersistedWordFromList}
                             persistWords={this.persistWords}
+                        />
+                    </div>
+                    <div className="col-md-10">
+                        <ArticleList
+                            articles={this.state.articles}
+                            addWordToList={this.addWordToList}
                         />
                     </div>
                 </div>
