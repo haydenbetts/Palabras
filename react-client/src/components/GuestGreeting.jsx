@@ -28,12 +28,11 @@ class GuestGreeting extends React.Component {
 
     render() {
         return (<div className="col-md-4 guest-greeting">
-            <div className="guest-greeting-message"> To save vocabulary enter your username, or create a new one!.
-             </div>
-            <div>
+            <div className="guest-greeting-message"> To save vocabulary enter your username, or create a new one!
                 <input id="username" type="text" placeholder="Enter your username" value={this.state.username} onChange={(e) => { this.updateUsername(e) }} />
                 <button type="button" onClick={() => { this.props.handleUsernameSubmit(this.state.username) }}> Submit</button>
             </div>
+
         </div>)
     }
 }

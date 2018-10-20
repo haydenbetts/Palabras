@@ -4,11 +4,14 @@ const ArticleListEntry = (props) => {
     // 
     return (
         <div onClick={() => props.addWordToList()}>
+        {console.log(props.article)}
             <div className="row">
                     <h3> {props.article.title} </h3>
             </div>
             <div className="row">
                 <div className="col-md-8">
+                <p> <i> {props.article.source.name} </i> </p>
+                <p> {props.article.url} </p>
                     <p> {props.article.content} </p>
                 </div>
                 <div className="col-md-4">

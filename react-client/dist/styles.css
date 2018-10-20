@@ -23,7 +23,7 @@
 
 .guest-greeting {
     padding-top: 20px;
-    background-color: white;
+    background-color: goldenrod;
 }
 
 button {
@@ -60,7 +60,7 @@ button.delete-word {
 }
 
 .guest-greeting-message {
-    color: black;
+    color: white;
 }
 
 .word-list-header {
@@ -75,7 +75,6 @@ button.delete-word {
     border-right: 3px solid goldenrod;
     border-bottom: 3px solid goldenrod;
     color: black;
-    background-color: white;
     /* border: 1px solid black; */
 }
 
