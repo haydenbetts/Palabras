@@ -124,7 +124,7 @@ class App extends React.Component {
                         handleUsernameSubmit={this.fetchUserInfo} />
                 </div>
                 <div className="row">
-                    <div className="col-md-2">
+                    <div className="word-list-wrapper col-md-2">
                         <WordList
                             words={this.state.words}
                             deleteUnpersisted={this.deleteUnpersistedWordFromList}

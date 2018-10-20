@@ -1,8 +1,8 @@
 const React = require('react');
 
 const UnpersistedWordListEntry = (props) => {
-    return (<li> {props.word.text} 
-        <button onClick={() => props.deleteUnpersisted(props.index)}> Remove </button> 
+    return (<li className="list-entry"> {props.word.text}
+        <button className="delete-word" onClick={() => props.deleteUnpersisted(props.index)}> Remove </button> 
      </li>)
 };
 
