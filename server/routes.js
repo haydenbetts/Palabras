@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require('./userController.js')
 const wordController = require('./wordController.js')
 const articleController = require('./articleController.js')
+const translationController = require('./translationController.js')
 
 router
     .get('/articles', articleController.get)
@@ -17,8 +18,6 @@ router
     .post('/words', wordController.post)
     .delete('/words', wordController.delete)
 router
-    .post('/translate', (req, res) => {
-        res.get()
-    })
+    .post('/translate', translationController.post)
 
 module.exports = router;

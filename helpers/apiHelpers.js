@@ -1,5 +1,6 @@
 let fs = require('fs');
 let https = require('https');
+let axios = require('axios');
 
 module.exports = {
     getTenArticles: (responseObject) => {
@@ -8,7 +9,7 @@ module.exports = {
     getTenRandomArticles: (responseObject) => {
         // todo - at some point make these random
     },
-    translationQuickStart: (word) => {
+    translationQuickStart: (word, callback) => {
         let subscriptionKey = process.env.TEXT_TRANSLATE_KEY;
 
         let host = 'api.cognitive.microsofttranslator.com';
@@ -26,7 +27,7 @@ module.exports = {
             });
             response.on('end', function () {
                 let json = JSON.stringify(JSON.parse(body), null, 4);
-                console.log(json);
+                callback(json);
             });
             response.on('error', function (e) {
                 console.log('Error: ' + e.message);
@@ -40,9 +41,10 @@ module.exports = {
             });
         }
 
-        let Translate = function (content) {
+        let Translate = function (content, callback) {
             let request_params = {
                 method: 'POST',
+                url: 'api.cognitive.microsofttranslator.com/translate?api-version=3.0',
                 hostname: host,
                 path: path + params,
                 headers: {
@@ -55,6 +57,17 @@ module.exports = {
             let req = https.request(request_params, response_handler);
             req.write(content);
             req.end();
+            // axios.post('https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en', {
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'Ocp-Apim-Subscription-Key': subscriptionKey,
+            //         'X-ClientTraceId': get_guid(),
+            //     }
+            // }).then((data) => {
+            //     console.log(data.data);
+            // }).catch((error) => {
+            //     console.log(error);
+            // })
         }
 
         let content = JSON.stringify([{ 'Text': text }]);

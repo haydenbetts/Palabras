@@ -17,6 +17,7 @@ class App extends React.Component {
             currentUser: false,
             words: [],
             articles: [],
+            word_translation_tuples: [],
             failedToFindUser: false,
             article: false
         }
@@ -117,15 +118,23 @@ class App extends React.Component {
     }
 
     translateWords() {
-        axios.get('/api/translate', {
+        if (this.state.words.length > 0) {
+        axios.post('/api/translate', {
             words: this.state.words
             })
-            .then((response) => {
-                console.log(response);
+            .then((translated) => {
+                var translated = translated.data.split(',');
+                this.state.words.forEach((word, i) => {
+                    var newArr = this.state.word_translation_tuples;
+                    newArr.push([word.text, translated[i]]);
+
+                    this.setState({word_translation_tuples: newArr});
+                })
             })
             .catch(function (error) {
                 console.log(error);
             });
+        }
     }
 
     render() {
@@ -151,6 +160,7 @@ class App extends React.Component {
                             deleteUnpersisted={this.deleteUnpersistedWordFromList}
                             persistWords={this.persistWords}
                             translateWords={this.translateWords}
+                            word_translation_tuples={this.state.word_translation_tuples}
                         />
                     </div>
                     <div className="col-md-10">
