@@ -4,7 +4,15 @@ let axios = require('axios');
 
 module.exports = {
     getTenArticles: (responseObject) => {
-        return responseObject.articles.slice(0, 9);
+        //article.content
+        var response = [];
+        console.log(responseObject)
+        for (let i = 0; i < 10; i++) {
+            if (responseObject.articles[i].content) {
+                response.push(responseObject.articles[i]);
+            } 
+        }
+        return response;
     },
     getTenRandomArticles: (responseObject) => {
         // todo - at some point make these random

@@ -19,8 +19,11 @@ const WordList = (props) => {
                 })}
             </ul>
             <button className="persist-words-button" onClick={() => props.persistWords()}> Save New Words to Database </button>
-            <button className="translate-words-button" onClick={() => props.translateWords()}> Translate Words </button>
-            <TranslatedWordTuples word_translation_tuples={props.word_translation_tuples}/>
+            <div>
+             <p> Translations </p>
+             <button className="translate-words-button" onClick={() => props.translateWords()}> Translate Words </button>
+             <TranslatedWordTuples word_translation_tuples={props.word_translation_tuples}/>
+            </div>
         </div>)
 };
 
