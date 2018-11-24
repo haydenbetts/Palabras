@@ -16,6 +16,7 @@ class GuestGreeting extends React.Component {
     this.state = {
       username: ''
     }
+    this.handleUsernameSubmitAndTutorialUpdate = this.handleUsernameSubmitAndTutorialUpdate.bind(this);
   }
 
   updateUsername(e) {
@@ -26,13 +27,24 @@ class GuestGreeting extends React.Component {
     })
   }
 
+  handleUsernameSubmitAndTutorialUpdate(username) {
+    if (this.props.tutorialStep === 2) {
+      this.props.setTutorialStep(3);
+    } else {
+      this.props.setTutorialStep(null);
+    }
+    this.props.handleUsernameSubmit(this.state.username);
+  }
+
   render() {
     return (<div className="col-md-4 guest-greeting">
       <div id="username-input">
         <input id="username" type="text" placeholder="Username" value={this.state.username} onChange={(e) => { this.updateUsername(e) }} />
-        <button type="button" onClick={() => { this.props.handleUsernameSubmit(this.state.username) }}> Submit</button>
-        <div className="guest-greeting-message">Enter your username, or create a new one!</div>
+        <button type="button" onClick={() => { this.handleUsernameSubmitAndTutorialUpdate(this.state.username) }}> Submit</button>
       </div>
+      <span className="guest-greeting-message">
+        Enter your username, or create a new one!
+        </span>
     </div>)
   }
 }

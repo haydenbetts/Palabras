@@ -10,7 +10,9 @@ class Greeting extends React.Component {
 
   render() {
     if (!this.props.currentUser) {
-      return <GuestGreeting handleUsernameSubmit={this.props.handleUsernameSubmit} />
+      return <GuestGreeting handleUsernameSubmit={this.props.handleUsernameSubmit}
+        setTutorialStep={this.props.setTutorialStep}
+        tutorialStep={this.props.tutorialStep} />
     } else {
       return <UserGreeting user={this.props.currentUser} />
     }

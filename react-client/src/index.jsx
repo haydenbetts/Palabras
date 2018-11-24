@@ -6,7 +6,7 @@ const UserGreeting = require('./components/UserGreeting.jsx');
 const WordList = require('./components/WordList.jsx');
 const ArticleList = require('./components/ArticleList.jsx');
 const NavBar = require('./components/NavBar.jsx');
-
+const PalabrasTutorial = require('./components/PalabrasTutorial.jsx')
 const axios = require('axios');
 
 class App extends React.Component {
@@ -19,22 +19,24 @@ class App extends React.Component {
       articles: [],
       word_translation_tuples: [],
       failedToFindUser: false,
-      article: false
+      article: false,
+      tutorialStep: 1
     }
     this.fetchUserInfo = this.fetchUserInfo.bind(this);
     this.addWordToList = this.addWordToList.bind(this);
+    this.addTutorialWordTolist = this.addTutorialWordTolist.bind(this);
     this.deleteUnpersistedWordFromList = this.deleteUnpersistedWordFromList.bind(this);
     this.persistWords = this.persistWords.bind(this);
     this.translateWords = this.translateWords.bind(this);
+    this.setTutorialStep = this.setTutorialStep.bind(this);
   }
 
   componentDidMount() {
     this.fetchArticles();
-    // Uncommenting this will allow you to test with sample user!
-    // if (this.state.usernameforTesting) {
-    //     this.fetchUserInfo(this.state.usernameforTesting);
-    //     this.fetchArticles();
-    // }
+  }
+
+  setTutorialStep(step) {
+    this.setState({ tutorialStep: step });
   }
 
   persistNewUser(username) {
@@ -111,6 +113,11 @@ class App extends React.Component {
     }
   }
 
+  addTutorialWordTolist() {
+    this.addWordToList();
+    this.setState({ tutorialStep: 2 });
+  }
+
   deleteUnpersistedWordFromList(index) {
     var newWords = [...this.state.words];
     newWords.splice(index, 1);
@@ -155,12 +162,15 @@ class App extends React.Component {
                 <div className="intro-text"> Read the news, learn new vocabulary </div>
               </div>
             </div>
-            <div className="col-md-3" />
+            <div className="col-md-4" />
             <Greeting currentUser={this.state.currentUser}
-              handleUsernameSubmit={this.fetchUserInfo} />
+              handleUsernameSubmit={this.fetchUserInfo}
+              setTutorialStep={this.setTutorialStep}
+              tutorialStep={this.state.tutorialStep} />
           </div>
         </div>
-        <div className="row">
+        <PalabrasTutorial tutorialStep={this.state.tutorialStep} addTutorialWordTolist={this.addTutorialWordTolist} />
+        <div className="row main-body-content">
           <div className="col-md-3 vocab-translations-wrapper">
             <WordList
               words={this.state.words}
@@ -170,7 +180,7 @@ class App extends React.Component {
               word_translation_tuples={this.state.word_translation_tuples}
             />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-9">
             <ArticleList
               articles={this.state.articles}
               addWordToList={this.addWordToList}
