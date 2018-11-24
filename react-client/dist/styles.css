@@ -1,5 +1,19 @@
+.wrapper {
+}
+
+.row {
+  max-width: 1440px;
+  margin: 0 auto;
+
+}
+
 .nav {
     background-color: goldenrod;
+}
+
+.nav-wrapper {
+  background-color: goldenrod;
+  width: 100%;
 }
 
 .header-text {
@@ -12,8 +26,7 @@
 
 .header-column {
     background-color: goldenrod;
-    padding-left: 60px;
-    padding-bottom: 10px;
+    padding: 0 0 10px 0;
 }
 
 .intro-text {
@@ -24,6 +37,30 @@
 .guest-greeting {
     padding-top: 20px;
     background-color: goldenrod;
+}
+
+#username-input button {
+  height: 50px;
+  width: 25%;
+  margin-left: 10px;
+  font-size: 1.2em;
+  font-style: italic;
+  color: white;
+  background-color: #6FA2AF;
+  border: none;
+  transition: background-color .1s cubic-bezier(.3,0,.45,1);
+}
+
+#username-input button:hover {
+  background-color: #4F7D93;
+}
+
+input#username {
+  width: 300px;
+  height: 50px;
+  font-style: italic;
+  font-size: 1.2em;
+  border:none;
 }
 
 button {
@@ -41,15 +78,18 @@ ul {
 
 ul.word-list {
     padding-left: 5px;
-    font-size: .9em;
+    font-size: 1.2em;
 }
 
 .word-list-wrapper {
     margin-top: 5px;
-    padding-left: 25px;
-    border-right: 1px solid black;
-    border-top: 1px solid black;
+    padding: 0px 25px;
+    border: 1px solid black;
     padding-top: 2;
+}
+
+.vocab-translations-wrapper {
+  padding: 0px;
 }
 
 button.delete-word {
@@ -61,6 +101,7 @@ button.delete-word {
 
 .guest-greeting-message {
     color: white;
+    font-size: 1.2em;
 }
 
 .word-list-header {
