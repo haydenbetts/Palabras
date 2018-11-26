@@ -6,7 +6,7 @@ const LanguageSelect = (props) => (
     <div className="word-list-header">
       News Language
   </div>
-    <div>
+    <div className="translation-buttons-wrapper">
       {
         [["es", "Spanish"],
         ["de", "German"],

@@ -163,3 +163,22 @@ button.delete-word {
 .language-selection {
   margin: 3px;
 }
+
+a.article-title {
+  font-size: 1.3em;
+  /* font-style: italic; */
+  font-weight: bold;
+  color: #080808;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.translations ul.word-list {
+  margin-top: 15px;
+}
+
+.translation-buttons-wrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
