@@ -4,7 +4,6 @@ const ArticleListEntry = (props) => {
   // 
   return (
     <div onClick={() => props.addWordToList()}>
-      {console.log(props.article)}
       <div className="row">
         <h3> {props.article.title} </h3>
       </div>

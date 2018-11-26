@@ -7,6 +7,7 @@ const WordList = require('./components/WordList.jsx');
 const ArticleList = require('./components/ArticleList.jsx');
 const NavBar = require('./components/NavBar.jsx');
 const PalabrasTutorial = require('./components/PalabrasTutorial.jsx')
+const LanguageSelect = require('./components/LanguageSelect.jsx');
 const axios = require('axios');
 
 class App extends React.Component {
@@ -20,7 +21,8 @@ class App extends React.Component {
       word_translation_tuples: [],
       failedToFindUser: false,
       article: false,
-      tutorialStep: 1
+      tutorialStep: 1,
+      language: 'es'
     }
     this.fetchUserInfo = this.fetchUserInfo.bind(this);
     this.addWordToList = this.addWordToList.bind(this);
@@ -29,6 +31,7 @@ class App extends React.Component {
     this.persistWords = this.persistWords.bind(this);
     this.translateWords = this.translateWords.bind(this);
     this.setTutorialStep = this.setTutorialStep.bind(this);
+    this.setLanguage = this.setLanguage.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +40,15 @@ class App extends React.Component {
 
   setTutorialStep(step) {
     this.setState({ tutorialStep: step });
+  }
+
+  setLanguage(language) {
+    console.log(this.state.language)
+    this.setState({ language: language }, () => {
+      console.log(this.state.language)
+      this.fetchArticles();
+    });
+
   }
 
   persistNewUser(username) {
@@ -73,7 +85,6 @@ class App extends React.Component {
     })
       .then((response) => {
         this.setState({ words: response.data }, () => {
-          console.log(this.state.words)
         })
       })
       .catch(function (error) {
@@ -82,10 +93,9 @@ class App extends React.Component {
   }
 
   fetchArticles() {
-    axios.get('/api/articles')
+    axios.get(`/api/articles?language=${this.state.language}`)
       .then((response) => {
         this.setState({ articles: response.data }, () => {
-          console.log(this.state.articles)
         })
       })
       .catch(function (error) {
@@ -172,6 +182,7 @@ class App extends React.Component {
         <PalabrasTutorial tutorialStep={this.state.tutorialStep} addTutorialWordTolist={this.addTutorialWordTolist} />
         <div className="row main-body-content">
           <div className="col-md-3 vocab-translations-wrapper">
+            <LanguageSelect setLanguage={this.setLanguage} />
             <WordList
               words={this.state.words}
               deleteUnpersisted={this.deleteUnpersistedWordFromList}

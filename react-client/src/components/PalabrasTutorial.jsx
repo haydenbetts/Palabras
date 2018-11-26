@@ -12,7 +12,6 @@ class PalabrasTutorial extends React.Component {
 
   render() {
     const props = this.props;
-    console.log(props.tutorialStep)
     if (props.tutorialStep === 1) {
       return (
         <div className="row new-to-palabras" onClick={() => props.addTutorialWordTolist()}>

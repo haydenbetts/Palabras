@@ -23,7 +23,7 @@ const WordList = (props) => {
         <div className="word-list-header">
           <p className="word-list-header-text"> Translations </p>
         </div>
-        <button className="translate-words-button" onClick={() => props.translateWords()}> Translate Words </button>
+        <button className="translate-words-button" onClick={() => props.translateWords()}> Translate My Vocab </button>
         <TranslatedWordTuples word_translation_tuples={props.word_translation_tuples} />
       </div>
     </div>)
