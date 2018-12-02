@@ -171,9 +171,12 @@ a.article-title {
   /* font-style: italic; */
   font-weight: bold;
   color: #080808;
-  text-decoration: underline;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+a.article-title:hover {
+  text-decoration: underline;
 }
 
 .translations ul.word-list {

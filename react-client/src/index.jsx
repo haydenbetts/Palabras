@@ -94,12 +94,7 @@ class App extends React.Component {
   fetchArticles() {
     axios.get(`/api/articles?language=${this.state.language}`)
       .then((response) => {
-<<<<<<< HEAD
-        this.setState({ articles: response.data }, () => {
-        })
-=======
         this.setState({ articles: response.data })
->>>>>>> palabras/master
       })
       .catch(function (error) {
         console.log(error);
