@@ -15,6 +15,6 @@ app.use(express.static(path.join(__dirname, '../react-client/dist')));
 
 app.use('/api', routes);
 
-const port = 80;
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
