@@ -1,5 +1,6 @@
 # Palabras 
 A language learning app that allows the user to fetch foreign-language news articles, then bookmark, save, and translate unknown words.
+
 Bootstrap | React | Node | Express | MySQL
 ## Live Demo
 > https://sheltered-sands-46887.herokuapp.com/
