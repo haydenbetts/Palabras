@@ -15,7 +15,6 @@ const LanguageSelect = (props) => (
         ["en", "English"],
         ["pt", "Portuguese"]
         ].map((lang) => {
-          console.log(lang)
           return <LanguageSelectButton
             languageShort={lang[0]}
             languageLong={lang[1]}
