@@ -72,9 +72,7 @@ class App extends React.Component {
       }
     })
       .then((response) => {
-        this.setState({ words: response.data }, () => {
-          console.log(this.state.words)
-        })
+        this.setState({ words: this.state.words.concat(response.data) })
       })
       .catch(function (error) {
         console.log(error);
@@ -84,9 +82,7 @@ class App extends React.Component {
   fetchArticles() {
     axios.get('/api/articles')
       .then((response) => {
-        this.setState({ articles: response.data }, () => {
-          console.log(this.state.articles)
-        })
+        this.setState({ articles: response.data })
       })
       .catch(function (error) {
         console.log(error);
@@ -106,16 +102,23 @@ class App extends React.Component {
       });
   }
 
-  addWordToList() {
+  async addWordToList() {
     if (window.getSelection().toString().length > 0) {
       var newWord = window.getSelection().toString();
-      this.setState({ words: this.state.words.concat([{ text: newWord, id: this.state.currentUser.id }]) });
+      this.setState({ words: this.state.words.concat([{ text: newWord, id: this.state.currentUser.id }]) }, () => {
+      });
     }
   }
 
-  addTutorialWordTolist() {
-    this.addWordToList();
-    this.setState({ tutorialStep: 2 });
+  async addTutorialWordTolist() {
+    await this.addWordToList();
+
+    for (let i = 0; i < this.state.words.length; i++) {
+      if (this.state.words[i].text === 'Mis primeras palabras') {
+        this.setState({ tutorialStep: 2 });
+        break;
+      }
+    }
   }
 
   deleteUnpersistedWordFromList(index) {
