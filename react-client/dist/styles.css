@@ -152,14 +152,14 @@ button.delete-word {
 }
 
 .new-to-palabras {
-    margin: 10px auto 0px auto;
-    border: 1px solid #000000;
-    padding: 10px;
-    font-style: italic;
-    font-size: 1.2em;
-    font-weight: bold;
-    background-color: #6FA2AF;
-    color: #000;
+  margin: 10px auto 0px auto;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #6FA2AF;
+  color: #ffffff;
+  box-shadow: 0px black;
+  border-radius: 5px;
 }
 
 .language-selection {

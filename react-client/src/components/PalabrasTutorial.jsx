@@ -1,9 +1,9 @@
 const React = require("react");
 
 const sampleWordStyle = {
-  color: '#000',
+  color: 'white',
   whiteSpace: 'nowrap',
-  textDecoration: 'underline'
+  textDecoration: 'underline',
 }
 
 class PalabrasTutorial extends React.Component {
