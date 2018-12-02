@@ -22,7 +22,7 @@ module.exports = {
           username: username
         }
       }).then((result) => {
-        res.status(201).send();
+        res.status(201).send(result);
       })
     })
   },

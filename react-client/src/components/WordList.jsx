@@ -18,7 +18,12 @@ const WordList = (props) => {
           }
         })}
       </ul>
-      <button className="persist-words-button" onClick={() => props.persistWords()}> Save New Words to Database </button>
+      <button className="persist-words-button"
+        onClick={() => {
+          if (props.currentUser) { props.persistWords(props.currentUser.id) }
+          else { props.renderLoginMessage(true) }
+        }}
+      > Save New Words to Database </button>
       <div className="translations">
         <div className="word-list-header">
           <p className="word-list-header-text"> English Translations </p>

@@ -19,6 +19,7 @@ class PalabrasTutorial extends React.Component {
           New to Palabras?
           To add a word or phrase to your vocab list, just select it with your cursor.
     Try selecting this phrase: <span style={sampleWordStyle}>&nbsp;Mis primeras palabras</span>
+          <button className="close-flash-button" onClick={() => { this.props.setTutorialStep(null) }}> X </button>
         </div>
       )
     } else if (props.tutorialStep === 2) {
@@ -27,6 +28,7 @@ class PalabrasTutorial extends React.Component {
           <nobr>Nice! You have added to &nbsp;<span style={sampleWordStyle}>My Vocab</span>. If you want to save words on your list between
       visits to Palabras, you'll need to create a username.</nobr>
           Go ahead and enter a username above, then click &nbsp;<span style={sampleWordStyle}>Submit</span >.
+          <button className="close-flash-button" onClick={() => { this.props.setTutorialStep(null) }}> X </button>
         </div >
       )
     } else if (props.tutorialStep === 3) {
@@ -34,7 +36,8 @@ class PalabrasTutorial extends React.Component {
         <div className="row new-to-palabras" onClick={() => props.addTutorialWordTolist()}>
           <nobr>Woohoo! Now you can <span style={sampleWordStyle}>Save New Words To Database</span >&nbsp;from &nbsp;<span style={sampleWordStyle}>My Vocab</span >, and view&nbsp;<span style={sampleWordStyle}>English Translations</span >&nbsp; of your vocab.</nobr>
           &nbsp;Happy learning!
-      </div>
+          <button className="close-flash-button" onClick={() => { this.props.setTutorialStep(null) }}> X </button>
+        </div>
       )
     } else if (props.tutorialStep === null) {
       return (<div></div>)

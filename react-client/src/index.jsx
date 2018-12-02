@@ -6,8 +6,9 @@ const UserGreeting = require('./components/UserGreeting.jsx');
 const WordList = require('./components/WordList.jsx');
 const ArticleList = require('./components/ArticleList.jsx');
 const NavBar = require('./components/NavBar.jsx');
-const PalabrasTutorial = require('./components/PalabrasTutorial.jsx')
+const PalabrasTutorial = require('./components/PalabrasTutorial.jsx');
 const LanguageSelect = require('./components/LanguageSelect.jsx');
+const FlashMessage = require('./components/FlashMessage.jsx');
 const axios = require('axios');
 
 class App extends React.Component {
@@ -22,7 +23,8 @@ class App extends React.Component {
       failedToFindUser: false,
       article: false,
       tutorialStep: 1,
-      language: 'es'
+      language: 'es',
+      renderLoginMessage: false
     }
     this.fetchUserInfo = this.fetchUserInfo.bind(this);
     this.addWordToList = this.addWordToList.bind(this);
@@ -32,6 +34,7 @@ class App extends React.Component {
     this.translateWords = this.translateWords.bind(this);
     this.setTutorialStep = this.setTutorialStep.bind(this);
     this.setLanguage = this.setLanguage.bind(this);
+    this.renderLoginMessage = this.renderLoginMessage.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +56,12 @@ class App extends React.Component {
 
   persistNewUser(username) {
     axios.post('/api/users', { username: username })
-      .then(() => this.fetchUserInfo(username))
+      .then((data) => {
+        let userId = data.data[0].id;
+        this.persistWords(userId);
+        this.fetchUserInfo(username);
+      }
+      )
   }
 
   fetchUserInfo(username) {
@@ -67,7 +75,7 @@ class App extends React.Component {
           this.persistNewUser(username);
         } else {
           this.setState({ currentUser: response.data[0] }, () => {
-            this.fetchUserWords(this.state.currentUser.id)
+            this.fetchUserWords(this.state.currentUser.id);
           })
 
         }
@@ -84,7 +92,9 @@ class App extends React.Component {
       }
     })
       .then((response) => {
-        this.setState({ words: this.state.words.concat(response.data) })
+        this.setState({
+          words: response.data
+        })
       })
       .catch(function (error) {
         console.log(error);
@@ -101,13 +111,13 @@ class App extends React.Component {
       });
   }
 
-  persistWords() {
+  persistWords(userId) {
     axios.post('/api/words', {
-      id: this.state.currentUser.id,
+      id: userId,
       words: this.state.words
     })
       .then((response) => {
-        this.fetchUserWords(this.state.currentUser.id);
+        this.fetchUserWords(userId);
       })
       .catch(function (error) {
         console.log(error);
@@ -124,10 +134,11 @@ class App extends React.Component {
 
   async addTutorialWordTolist() {
     await this.addWordToList();
-
     for (let i = 0; i < this.state.words.length; i++) {
-      if (this.state.words[i].text === 'Mis primeras palabras') {
-        this.setState({ tutorialStep: 2 });
+      if (this.state.words[i].text.includes('Mis primeras palabras')) {
+        if (this.state.tutorialStep === 1) {
+          this.setTutorialStep(2);
+        }
         break;
       }
     }
@@ -163,6 +174,11 @@ class App extends React.Component {
     }
   }
 
+  renderLoginMessage(bool) {
+    console.log(this.state.renderLoginMessage)
+    this.setState({ renderLoginMessage: bool })
+  }
+
   render() {
 
     return (
@@ -184,11 +200,18 @@ class App extends React.Component {
               tutorialStep={this.state.tutorialStep} />
           </div>
         </div>
-        <PalabrasTutorial tutorialStep={this.state.tutorialStep} addTutorialWordTolist={this.addTutorialWordTolist} />
+        <PalabrasTutorial tutorialStep={this.state.tutorialStep}
+          addTutorialWordTolist={this.addTutorialWordTolist}
+          setTutorialStep={this.setTutorialStep}
+        />
+        <FlashMessage loginMessageState={this.state.renderLoginMessage}
+          renderLoginMessage={this.renderLoginMessage} />
         <div className="row main-body-content">
           <div className="col-md-3 vocab-translations-wrapper">
             <LanguageSelect setLanguage={this.setLanguage} />
             <WordList
+              renderLoginMessage={this.renderLoginMessage}
+              currentUser={this.state.currentUser}
               words={this.state.words}
               deleteUnpersisted={this.deleteUnpersistedWordFromList}
               persistWords={this.persistWords}
