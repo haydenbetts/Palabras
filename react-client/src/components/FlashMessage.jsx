@@ -25,8 +25,12 @@ class FlashMessage extends React.Component {
 
     return (
       <div className="row new-to-palabras" style={style}>
-        In order to save words, you need to log in!
-        <button className="close-flash-button" onClick={() => { this.props.renderLoginMessage(false) }}> X </button>
+        <div className="col-md-11 tutorial-text-wrapper">
+          In order to save words, you need to log in!
+          </div>
+        <div className="col-md-1 text-right close-flash-button-wrapper">
+          <button className="close-flash-button" onClick={() => { this.props.renderLoginMessage(false) }}> X </button>
+        </div>
       </div >)
   }
 };
