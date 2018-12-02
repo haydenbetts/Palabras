@@ -1,8 +1,9 @@
 const React = require("react");
 
 const sampleWordStyle = {
-  color: '#6FA2AF',
-  whiteSpace: 'nowrap'
+  color: '#000',
+  whiteSpace: 'nowrap',
+  textDecoration: 'underline'
 }
 
 class PalabrasTutorial extends React.Component {
@@ -17,7 +18,7 @@ class PalabrasTutorial extends React.Component {
         <div className="row new-to-palabras" onClick={() => props.addTutorialWordTolist()}>
           New to Palabras?
           To add a word or phrase to your vocab list, just select it with your cursor.
-    Try selecting this one: <span style={sampleWordStyle}>&nbsp;"Mis primeras palabras"</span>
+    Try selecting this phrase: <span style={sampleWordStyle}>&nbsp;Mis primeras palabras</span>
         </div>
       )
     } else if (props.tutorialStep === 2) {
