@@ -5,9 +5,7 @@ Bootstrap | React | Node | Express | MySQL
 ## Live Demo
 > https://sheltered-sands-46887.herokuapp.com/
 
-> // Heroku free tier servers like this one sleep after 30 minutes of inactivity, 
-
-> // and it takes 15-20s for them to wake up from sleep. Thank you for being patient during initial load :)
+Note: Heroku free tier servers like this one sleep after 30 minutes of inactivity, and it takes 15-20s for them to wake up from sleep. Thank you for being patient during initial load :)
 ## 15 Second Scroll-through Video 
 [![IMAGE ALT TEXT HERE](https://i.imgur.com/S8SHyhy.jpg)](https://www.youtube.com/watch?v=Mc6z-W8UNHw)
 
