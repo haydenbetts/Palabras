@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, '../react-client/dist')));
 
 app.use('/api', routes);
 
-const port = 3000
+const port = 80;
 
 
 
